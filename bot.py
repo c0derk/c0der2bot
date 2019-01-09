@@ -6,7 +6,7 @@ import random
 import time
 import datetime
 import json
-import urllib2
+import urllib.request
 
 flipper = ['Орел','Решка']
 phares1 = ['Як Сергій та Лінукс', 'Як Михайло та Мафіозник', 'Як Валерія та її телефон', 'Як Час та Герб']
@@ -193,7 +193,7 @@ def Shipper(message):
 @bot.message_handler(commands=['weather'])
 def getWeather24(message):
 	weather_url = 'http://api.openweathermap.org/data/2.5/forecast?q=Kherson,ua&lang=ua&units=metric&cnt=8&appid=70733a38882077ca17d167f9ee4acede'
-	url_weather = urllib2.urlopen(weather_url)
+	url_weather = urllib.request.urlopen(weather_url).read()
 	data = json.loads(url_weather.read())
 	for i in data['list'][0:1]:
 		first = (i['dt_txt'][11:16])
@@ -273,7 +273,7 @@ def getWeather24(message):
 @bot.message_handler(commands=['currency'])
 def get_currency(message):
 	currencyurl = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
-	cur_json_obj = urllib2.urlopen(currencyurl).read()
+	cur_json_obj = urllib.request.urlopen(currencyurl).read()
 	USD_to_UAH = json.loads(cur_json_obj)[0:1]
 	for a in USD_to_UAH:
 		#uahusd = '💵'.decode('utf-8') + ' До '.decode('utf-8') + a['base_ccy'] +' '+ a['buy'][0:5] +'-'+ 'Купівля'.decode('utf-8') +' ‖ '.decode('utf-8')+ a['sale'][0:5] +'-'+ 'Продаж'.decode('utf-8')
