@@ -303,13 +303,13 @@ def Hello(message):
 		pass
 	if message.text == 'Бот, привет'.decode('utf-8') or message.text == 'Бот,привет'.decode('utf-8') or message.text == 'бот,привет'.decode('utf-8') or message.text == 'бот, привет'.decode('utf-8') or message.text == 'Бот привет'.decode('utf-8') or message.text == 'бот привет'.decode('utf-8'):
 		
-		if time.localtime().tm_hour in range(6, 11):
+		if time.gmtime().tm_hour in range(4, 9):
 			bot.send_message(message.chat.id, 'Доброго ранку')
-		if time.localtime().tm_hour in range(12, 16):
+		if time.gmtime().tm_hour in range(11, 14):
 			bot.send_message(message.chat.id, 'Доброго дня')
-		if time.localtime().tm_hour in range(17, 23):
+		if time.gmtime().tm_hour in range(15, 21):
 			bot.send_message(message.chat.id, 'Доброго вечора')
-		if time.localtime().tm_hour in range(0,5):
+		if time.gmtime().tm_hour in range(22, 23) or time.gmtime().tm_hour in range(0, 3):
 			bot.send_message(message.chat.id, 'Чого ти не спиш?')
 			
 bot.infinity_polling()
